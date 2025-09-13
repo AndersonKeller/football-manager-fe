@@ -1,0 +1,36 @@
+{
+  "name": "front",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=local vite --host",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "homolog": "cross-env NODE_ENV=development vite build",
+    "producao": "cross-env NODE_ENV=production vite build"
+  },
+  "dependencies": {
+    "@iconify/vue": "^5.0.0",
+    "@vee-validate/zod": "^4.15.1",
+    "@vue/compiler-dom": "^3.5.21",
+    "axios": "^1.11.0",
+    "cross-env": "^10.0.0",
+    "maska": "^3.2.0",
+    "moment": "^2.30.1",
+    "pinia": "^3.0.3",
+    "vee-validate": "^4.15.1",
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1",
+    "vue3-toastify": "^0.2.8",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.7.0",
+    "typescript": "~5.8.3",
+    "vite": "^7.1.2",
+    "vue-tsc": "^3.0.5"
+  }
+}

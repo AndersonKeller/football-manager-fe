@@ -1,0 +1,7 @@
+{
+  "endpoints": {
+    "local": "http://localhost:3131",
+    "producao": "",
+    "homologacao": "https://server-mepedeai-production.up.railway.app"
+  }
+}
