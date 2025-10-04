@@ -1,4 +1,8 @@
 import { language } from "../../plugins/language";
+import Home from "../../view/Home.vue";
+import ScheduleView from "../../view/league/ScheduleView.vue";
+
+import TeamCreate from "../../view/team/TeamCreate.vue";
 
 const TITTLE = `Football Manager | `;
 
@@ -8,8 +12,7 @@ export default [
     name: "Home",
     props: true,
     params: true,
-    component: () =>
-      import(/* webpackChunkName: "home" */ "../../view/Home.vue"),
+    component: Home,
     meta: { title: TITTLE + language.translate("HOME"), requiresAuth: false },
   },
   {
@@ -38,10 +41,20 @@ export default [
     name: "TeamCreate",
     props: true,
     params: true,
-    component: () =>
-      import(/* webpackChunkName: "home" */ "../../view/team/TeamCreate.vue"),
+    component: TeamCreate,
     meta: {
       title: TITTLE + language.translate("CRIAR_EQUIPE"),
+      requiresAuth: false,
+    },
+  },
+  {
+    path: "/:league/schedule",
+    name: "LeaguSchedule",
+    props: true,
+    params: true,
+    component: ScheduleView,
+    meta: {
+      title: TITTLE + language.translate("TABELA"),
       requiresAuth: false,
     },
   },

@@ -3,6 +3,7 @@ import { endpoints } from "../../app.config.json";
 import { storageController } from "./storage.controller";
 import { utilController } from "./util.controller";
 import { toast } from "vue3-toastify";
+
 let endpoint = endpoints.producao;
 
 switch (process.env.NODE_ENV) {
@@ -71,7 +72,7 @@ export const serviceController = {
     } catch (error: unknown | any) {
       console.log(error, "error");
 
-      if (error.status === 401) {
+      if (error.status === 401 || error.code === "ERR_NETWORK") {
         const lang = localStorage.getItem("lang");
 
         storageController.destroyLocal();

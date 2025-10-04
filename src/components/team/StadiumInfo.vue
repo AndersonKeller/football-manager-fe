@@ -18,7 +18,7 @@ const stadium = teamStore().getStadium;
     </div>
     <div>
       <h3>{{ lang.translate("INGRESSOS") }}:</h3>
-      <p>{{ utilController.asMoney(stadium.ticket) }}</p>
+      <p>{{ utilController.asMoney(stadium.ticket / 100) }}</p>
     </div>
   </section>
 </template>

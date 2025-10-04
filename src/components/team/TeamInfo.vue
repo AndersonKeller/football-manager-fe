@@ -3,6 +3,7 @@ import { ref, watch } from "vue";
 import { utilController } from "../../controllers/util.controller";
 import useLangStore from "../../plugins/language";
 import { teamStore } from "../../stores/team.store";
+import Field from "../canvas/Field.vue";
 const lang = useLangStore();
 const team = ref(teamStore().getTeam);
 watch(
@@ -33,8 +34,12 @@ watch(
           " " +
           team.league.name.split(" ")[1]
         }}
+        <router-link :to="`${team.league.id}/schedule`">{{
+          lang.translate("VER_TABELA")
+        }}</router-link>
       </p>
     </div>
+    <Field />
   </section>
 </template>
 <style scoped></style>
