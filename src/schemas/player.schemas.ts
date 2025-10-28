@@ -58,6 +58,7 @@ export type iReturnPlayerWhitSpecialAbility = z.infer<
 
 export const returnPlayerWhitAbilitySchema = z.object({
   player: returnPlayerSchema,
+
   abilities: z
     .object({
       ability: returnAbilitySchema,

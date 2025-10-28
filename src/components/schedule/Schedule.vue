@@ -10,13 +10,10 @@ import type {
 import { teamStore } from "../../stores/team.store";
 import { leagueController } from "../../controllers/league.controller";
 import Iconify from "../Iconify.vue";
+import Tabs from "../Tabs.vue";
 
 const lang = useLangStore();
-interface iMenu {
-  name: string;
-  active: boolean;
-  value: "team" | "league";
-}
+
 const { params } = useRoute();
 
 const team = ref(teamStore().getTeam);
@@ -24,18 +21,16 @@ const teamsSchedule = ref([] as iCreateRound[]);
 const schedule = ref([] as iReturnAllRounds);
 const roundActive = ref(1);
 const totalRounds = ref(0);
-const menu = ref({} as iMenu);
+interface iMenu {
+  name: string;
+  active: boolean;
+  value: "team" | "league";
+}
 const menus: iMenu[] = [
   { name: lang.translate("MEUS_JOGOS"), active: true, value: "team" },
   { name: lang.translate("TODOS_JOGOS"), active: false, value: "league" },
 ];
-const active = (item: iMenu) => {
-  menus.forEach((menuitem) => {
-    menuitem.active = false;
-  });
-  menu.value = item;
-  item.active = true;
-};
+const menu = ref({} as iMenu);
 watch(
   () => teamStore().getTeam,
   async () => {
@@ -47,11 +42,10 @@ watch(
   }
 );
 onMounted(async () => {
-  menu.value = menus.find((item) => item.active) || menus[0];
   schedule.value = await leagueController.getLeagueSchedule(
     Number(params.league)
   );
-  console.log(schedule.value, "schedule");
+  console.log(schedule.value, "schedule", menu.value);
   totalRounds.value = schedule.value[schedule.value.length - 1].round;
 });
 const prev = () => {
@@ -60,9 +54,13 @@ const prev = () => {
 const next = () => {
   roundActive.value++;
 };
+const change = (val: iMenu) => {
+  menu.value = val;
+  console.log("change", val, menu.value, teamsSchedule.value);
+};
 </script>
 <template>
-  <ul>
+  <!-- <ul>
     <button
       :class="[item.active ? 'active' : '']"
       @click="active(item)"
@@ -70,7 +68,8 @@ const next = () => {
     >
       {{ item.name }}
     </button>
-  </ul>
+  </ul> -->
+  <Tabs :menus="menus" @menuActive="change" />
   <ul v-if="menu.value === 'team'">
     <li v-for="item in teamsSchedule">
       <h3>{{ utilController.fomatDate(item.date!) }}</h3>

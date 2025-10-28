@@ -34,10 +34,13 @@ watch(
           " " +
           team.league.name.split(" ")[1]
         }}
-        <router-link :to="`${team.league.id}/schedule`">{{
-          lang.translate("VER_TABELA")
-        }}</router-link>
       </p>
+      <router-link :to="`${team.league.id}/schedule`">{{
+        lang.translate("VER_TABELA")
+      }}</router-link>
+      <router-link :to="`${team.league.id}/teams`">{{
+        lang.translate("VER_TIMES")
+      }}</router-link>
     </div>
     <Field />
   </section>

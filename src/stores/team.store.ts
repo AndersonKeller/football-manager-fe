@@ -1,5 +1,5 @@
 import type { iReturnStadium } from "../schemas/stadium.schemas";
-import type { iReturnTeam } from "../schemas/team.schemas";
+import type { iReturnTeam, iReturnTeamPlayers } from "../schemas/team.schemas";
 
 import { defineStore } from "pinia";
 
@@ -8,6 +8,7 @@ export const teamStore = defineStore("teamStore", {
     return {
       team: null as iReturnTeam | null,
       stadium: null as iReturnStadium | null,
+      teamPlayers: {} as iReturnTeamPlayers,
     };
   },
   getters: {
@@ -17,6 +18,9 @@ export const teamStore = defineStore("teamStore", {
     getStadium: (state) => {
       return state.stadium;
     },
+    getTeamPlayers: (state) => {
+      return state.teamPlayers;
+    },
   },
   actions: {
     setTeam(value: iReturnTeam) {
@@ -24,6 +28,9 @@ export const teamStore = defineStore("teamStore", {
     },
     setStadium(value: iReturnStadium) {
       this.stadium = value;
+    },
+    setTeamPlayers(value: iReturnTeamPlayers) {
+      this.teamPlayers = value;
     },
   },
 });

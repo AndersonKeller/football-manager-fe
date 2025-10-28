@@ -1,6 +1,7 @@
 import { language } from "../../plugins/language";
 import Home from "../../view/Home.vue";
 import ScheduleView from "../../view/league/ScheduleView.vue";
+import TeamsView from "../../view/league/TeamsView.vue";
 
 import TeamCreate from "../../view/team/TeamCreate.vue";
 
@@ -55,6 +56,17 @@ export default [
     component: ScheduleView,
     meta: {
       title: TITTLE + language.translate("TABELA"),
+      requiresAuth: false,
+    },
+  },
+  {
+    path: "/:league/teams",
+    name: "LeagueTeams",
+    props: true,
+    params: true,
+    component: TeamsView,
+    meta: {
+      title: TITTLE + language.translate("TIMES"),
       requiresAuth: false,
     },
   },
