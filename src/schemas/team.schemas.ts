@@ -61,6 +61,7 @@ export const returnTeamPlayerSchema = z.object({
       right_ck_taker: z.boolean().default(false),
       penalty_taker: z.boolean().default(false),
       number: z.number(),
+      id: z.number(),
     })
     .array(),
 });
@@ -78,3 +79,27 @@ export const returnTeamPlayerAbilitiesSchema = z.object({
 export type iReturnTeamPlayerAbilities = z.infer<
   typeof returnTeamPlayerAbilitiesSchema
 >;
+export const returnTeamPlayersSchema = z
+  .object({
+    player: returnPlayerSchema.extend({
+      abilities: z
+        .object({
+          ability: returnAbilitySchema,
+          value: z.number(),
+        })
+        .array(),
+      position: returnPlayerPositionSchema.omit({ player: true }).array(),
+      selected: z.boolean().default(false),
+    }),
+    starter: z.boolean().default(false),
+    captain: z.boolean().default(false),
+    long_fk_taker: z.boolean().default(false),
+    short_fk_taker: z.boolean().default(false),
+    left_ck_taker: z.boolean().default(false),
+    right_ck_taker: z.boolean().default(false),
+    penalty_taker: z.boolean().default(false),
+    number: z.number(),
+    id: z.number(),
+  })
+  .array();
+export type iReturnTeamsPlayers = z.infer<typeof returnTeamPlayersSchema>;

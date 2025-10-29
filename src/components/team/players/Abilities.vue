@@ -47,8 +47,13 @@ console.log(abilities, "abilities prop?");
   </ul>
 </template>
 <style scoped>
+ul li strong,
+ul li p {
+  font-size: 0.875rem;
+}
 .abilities_list {
   padding: 8px 24px;
+  margin-top: -8px;
 }
 .explain {
   display: flex;
@@ -63,7 +68,7 @@ console.log(abilities, "abilities prop?");
 }
 .abilities_list .list {
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--color-gray-300);
+  border-bottom: 1px solid var(--color-gray-500);
   display: flex;
   flex-direction: column;
 }
